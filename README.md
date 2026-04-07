@@ -27,7 +27,16 @@ Each lab is designed to be runnable without keeping resources running permanentl
 - Identity-first cloud security (service accounts and scoped permissions)
 - Practical debugging and operational discipline
 - Multi-cloud translation of the same principles (GCP first, then AWS and Azure)
-``
+
+## Verification Evidence
+For each lab, I include:
+- Terraform outputs showing created resources
+- Console verification steps (where relevant)
+- Notes on common errors and fixes
+
+## Scope & Safety
+- Sensitive values (e.g., `terraform.tfvars`, state files, credentials) are not committed to GitHub.
+- Labs are designed to be applied and destroyed to reduce cost and avoid leaving resources running.
 
 ## Phase 1: GCP (Current)
 - Custom VPC (no default network)
