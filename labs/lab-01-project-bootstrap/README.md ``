@@ -1,0 +1,32 @@
+## Lab 01 – GCP Project Bootstrap & API Enablement
+
+### Why this lab exists
+Cloud projects form the security boundary in GCP.
+In real environments, infrastructure often fails before deployment
+due to project misconfiguration, IAM issues, or missing APIs.
+
+This lab focuses on building a secure GCP foundation using Terraform
+and resolving real-world failures encountered during setup.
+
+### What I built
+- Terraform provider configured with the correct GCP project ID
+- Compute Engine API enablement
+- Custom VPC network (no default network)
+
+### Problems encountered
+- Terraform failed with Error 403 (SERVICE_DISABLED)
+- Project display name was used instead of the actual project ID
+- Terraform provider cache required reinitialisation
+
+### Root cause
+Terraform was targeting the wrong project identifier,
+causing API enablement and network creation to fail.
+
+### Resolution
+- Corrected project ID usage in the provider
+- Reinitialised Terraform provider
+- Ensured APIs were enabled on the correct project
+
+### Outcome
+Infrastructure was successfully deployed using Terraform,
+with a strong understanding of GCP project-level security boundaries.
