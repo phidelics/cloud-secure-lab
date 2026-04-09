@@ -58,22 +58,20 @@ resource "google_compute_firewall" "allow_iap_ssh" {
 }
 
 # Workload service account
-resource "google_service_account" "vm_workload" {
-  account_id   = "workload-vm-sa"
-  display_name = "Workload VM Service Account"
-  depends_on   = [google_project_service.iam]
+data "google_service_account" "vm_workload" {
+  account_id = "workload-vm-sa"
 }
 
 resource "google_project_iam_member" "vm_log_writer" {
   project = var.project_id
   role    = "roles/logging.logWriter"
-  member  = "serviceAccount:${google_service_account.vm_workload.email}"
+  member  = "serviceAccount:${data.data.google_service_account.vm_workload.email}"
 }
 
 resource "google_project_iam_member" "vm_metric_writer" {
   project = var.project_id
   role    = "roles/monitoring.metricWriter"
-  member  = "serviceAccount:${google_service_account.vm_workload.email}"
+  member  = "serviceAccount:${data.data.google_service_account.vm_workload.email}"
 }
 
 # Private VM: NO public IP (no access_config block)
@@ -95,7 +93,7 @@ resource "google_compute_instance" "private_vm" {
   }
 
   service_account {
-    email  = google_service_account.vm_workload.email
+    email  = data.google_service_account.vm_workload.email
     scopes = ["https://www.googleapis.com/auth/cloud-platform"]
   }
 
