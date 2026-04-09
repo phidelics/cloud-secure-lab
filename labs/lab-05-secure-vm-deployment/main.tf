@@ -65,13 +65,13 @@ data "google_service_account" "vm_workload" {
 resource "google_project_iam_member" "vm_log_writer" {
   project = var.project_id
   role    = "roles/logging.logWriter"
-  member  = "serviceAccount:${data.data.google_service_account.vm_workload.email}"
+  member  = "serviceAccount:${data.google_service_account.vm_workload.email}"
 }
 
 resource "google_project_iam_member" "vm_metric_writer" {
   project = var.project_id
   role    = "roles/monitoring.metricWriter"
-  member  = "serviceAccount:${data.data.google_service_account.vm_workload.email}"
+  member  = "serviceAccount:${data.google_service_account.vm_workload.email}"
 }
 
 # Private VM: NO public IP (no access_config block)
