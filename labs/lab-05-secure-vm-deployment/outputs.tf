@@ -7,5 +7,5 @@ output "vm_internal_ip" {
 }
 
 output "vm_service_account" {
-  value = google_service_account.vm_workload.email
+  value = data.google_service_account.vm_workload.email
 }
