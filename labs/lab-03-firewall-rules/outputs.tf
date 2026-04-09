@@ -4,4 +4,3 @@ output "firewall_rules" {
     try(google_compute_firewall.allow_iap_ssh[0].name, null)
   ]
 }
-``
