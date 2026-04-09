@@ -1,7 +1,7 @@
 variable "project_id" { type = string }
 variable "region" { 
   type = string 
-  default = "europe-west2" 
+  default = "europe-west2"
 }
 
 variable "tf_sa_name" {
